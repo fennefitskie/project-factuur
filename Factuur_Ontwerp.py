@@ -7,6 +7,11 @@ from reportlab.lib.units import inch
 
 pdffile = Canvas('Factuur Broski.pdf')
 
+naam_klant = input('Wat is uw naam? ')
+adres_klant = input('Wat is uw adres? ')
+postcode_klant = input('Wat is uw postcode en plaats? ')
+land_klant = input('Wat is het land waarin u woont? ')
+
 fonts = pdffile.getAvailableFonts()
 
 pdffile.setFont('Times-Italic', 35)
@@ -34,10 +39,10 @@ pdffile.setFont('Helvetica-Bold', 13)
 pdffile.drawString(380, 680, 'Gegevens klant')
 
 pdffile.setFont('Helvetica', 13 )
-pdffile.drawString(380, 665, 'Naam klant')
-pdffile.drawString(380, 650, 'Adres klant')
-pdffile.drawString(380, 635, 'Postcode en straat klant' )
-pdffile.drawString(380, 620, 'Land klant')
+pdffile.drawString(380, 665, naam_klant)
+pdffile.drawString(380, 650, adres_klant)
+pdffile.drawString(380, 635, postcode_klant )
+pdffile.drawString(380, 620, land_klant)
 
 y = 700
 x = 80
