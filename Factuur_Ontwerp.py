@@ -9,23 +9,14 @@ order = data.get('order', {})
 klant = order.get('klant', {})
 producten = order.get('producten', {})
 
-for x in order:
-    ordernummer = order.get('ordernummer', 'Niet gevonden')
-    orderdatum = order.get('orderdatum', 'Niet gevonden')
-    betaaltermijn = order.get('betaaltermijn', 'Niet gevonden')
+ordernummer = order.get('ordernummer', 'Niet gevonden')
+orderdatum = order.get('orderdatum', 'Niet gevonden')
+betaaltermijn = order.get('betaaltermijn', 'Niet gevonden')
 
-for x in klant:
-    naam = klant.get('naam', 'Niet gevonden')
-    adres = klant.get('adres', 'Niet gevonden')
-    postcode = klant.get('postcode', 'Niet gevonden')
-    stad = klant.get('stad', 'Niet gevonden')
-
-for product in producten:
-    productnaam = product['productnaam']
-    aantal = str(product['aantal'])
-    prijs_excl_btw = str(product['prijs_per_stuk_excl_btw'])
-    btw_percentage = product['btw_percentage']
-
+naam = klant.get('naam', 'Niet gevonden')
+adres = klant.get('adres', 'Niet gevonden')
+postcode = klant.get('postcode', 'Niet gevonden')
+stad = klant.get('stad', 'Niet gevonden')
 
 pdffile = Canvas('Factuur Broski.pdf')
 
@@ -91,11 +82,18 @@ pdffile.line(x, y, x + 400, y)
 
 pdffile.setFont('Helvetica', 13 )
 y = 435
-for i in range(len(producten)):
-    pdffile.drawString(103, y, productnaam)
-    pdffile.drawString(203, y, aantal)
+
+for product in producten:
+    productnaam = product['productnaam']
+    aantal = str(product['aantal'])
+    prijs_excl_btw = str(product['prijs_per_stuk_excl_btw'])
+    btw_percentage = product['btw_percentage']
+    totaal = float(prijs_excl_btw) * int(aantal)
+
+    pdffile.drawString(90, y, productnaam)
+    pdffile.drawString(240, y, aantal)
     pdffile.drawString(303, y, prijs_excl_btw)
-    pdffile.drawString(403, y, 'Totaal')
+    pdffile.drawString(403, y, str(totaal))
     y -= 25
 
 y = y  
