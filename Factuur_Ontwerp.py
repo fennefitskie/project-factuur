@@ -73,7 +73,7 @@ pdffile.setFont('Helvetica-Bold', 15)
 pdffile.drawString(100, 480, 'Item')
 pdffile.drawString(200, 480, 'Aantal')
 pdffile.drawString(300, 480, 'Prijs')
-pdffile.drawString(400, 480, 'totaal')
+pdffile.drawString(400, 480, 'Totaal')
 
 y = 460
 x = 80
@@ -83,15 +83,38 @@ pdffile.line(x, y, x + 400, y)
 pdffile.setFont('Helvetica', 13 )
 y = 435
 
+max_lengte = 15
+prijs_zonder_btw = 0
 for product in producten:
     productnaam = product['productnaam']
     aantal = str(product['aantal'])
     prijs_excl_btw = str(product['prijs_per_stuk_excl_btw'])
     btw_percentage = product['btw_percentage']
-    totaal = float(prijs_excl_btw) * int(aantal)
+    totaal = round(float(prijs_excl_btw) * int(aantal),2)
+    prijs_zonder_btw += totaal
 
-    pdffile.drawString(90, y, productnaam)
-    pdffile.drawString(240, y, aantal)
+
+    if len(productnaam) > max_lengte:
+            productnaam = productnaam[:max_lengte-3] + "..." 
+
+    if btw_percentage == 6:
+        btw_6 = totaal / 100 * 106
+        btw_6 = btw_6 - totaal
+        print(btw_6)
+
+    elif btw_percentage == 9:
+         btw_9 = totaal / 100 * 109
+         btw_9 = btw_9 - totaal
+         print(btw_9)
+         
+    else:
+         btw_21 = totaal / 100 * 121
+         btw_21 = btw_21 - totaal
+         print(btw_21)
+
+
+    pdffile.drawString(95, y, productnaam)
+    pdffile.drawString(220, y, aantal)
     pdffile.drawString(303, y, prijs_excl_btw)
     pdffile.drawString(403, y, str(totaal))
     y -= 25
@@ -105,16 +128,18 @@ x = 80
 pdffile.line(x, y, x + 400, y)
 
 y = y - 20
-pdffile.drawString(340, y, 'Totaal excl BTW: ' )
-pdffile.drawString(450, y, 'Prijs' )
+pdffile.drawString(320, y, 'Totaal excl BTW: ' )
+pdffile.drawString(430, y, str(prijs_zonder_btw))
 
 y = y - 20
-pdffile.drawString(405, y, 'BTW: ' )
+
+
+pdffile.drawString(385, y, 'BTW: ' )
 pdffile.drawString(450, y, 'Prijs' )
 
 y = y - 20
 pdffile.setFont('Helvetica-Bold', 13)
-pdffile.drawString(335, y, 'Totaal incl BTW: ' )
+pdffile.drawString(315, y, 'Totaal incl BTW: ' )
 pdffile.drawString(450, y, 'Prijs' )
 
 
