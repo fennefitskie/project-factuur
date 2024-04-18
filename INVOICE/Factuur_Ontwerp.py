@@ -15,14 +15,13 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS Factuur_Broski(
 )""")
 
 max_lengte = 15
-prijs_zonder_btw = 0
 btw_6 = 0
 btw_9 = 0
 btw_21 = 0
 
-input_folder = 'C:/school1/school/project_factuur/factuur_opdracht/JSON_IN'
-output_folder = 'C:/school1/school/project_factuur/factuur_opdracht/JSON_PROCESSED'
-pdf_folder = 'C:/school1/school/project_factuur/factuur_opdracht/INVOICE'
+input_folder = 'C:/School/Code/leren_programmeren/project-factuur/JSON_IN'
+output_folder = 'C:/School/Code/leren_programmeren/project-factuur/JSON_PROCESSED'
+pdf_folder = 'C:/School/Code/leren_programmeren/project-factuur/INVOICE'
 
 for filename in os.listdir(input_folder):
     input_file_path = os.path.join(input_folder, filename)
@@ -98,14 +97,16 @@ for filename in os.listdir(input_folder):
     pdffile.setFont('Helvetica', 13 )
     y = 430
 
+    prijs_zonder_btw = 0  
+
     for product in producten:
         productnaam = product['productnaam']
-        aantal = str(product['aantal'])
-        prijs_excl_btw = str(product['prijs_per_stuk_excl_btw'])
+        aantal = int(product['aantal'])
+        prijs_excl_btw = float(product['prijs_per_stuk_excl_btw'])
         btw_percentage = product['btw_percentage']
 
-        totaal_zonder_btw = round(float(prijs_excl_btw) * int(aantal),2)
-        prijs_zonder_btw += totaal_zonder_btw
+        totaal_zonder_btw = round(prijs_excl_btw * aantal, 2)
+        prijs_zonder_btw += totaal_zonder_btw  
 
         if len(productnaam) > max_lengte:
                 productnaam = productnaam[:max_lengte-3] + "..." 
@@ -122,14 +123,18 @@ for filename in os.listdir(input_folder):
             btw_21 = totaal_zonder_btw / 100 * 121
             btw_21 = btw_21 - totaal_zonder_btw
 
-        totaal_btw = round(btw_6 + btw_9 + btw_21, 2) 
-        totaal = round(prijs_zonder_btw + totaal_btw, 2)
-
+        
         pdffile.drawString(95, y, productnaam)
-        pdffile.drawString(220, y, aantal)
-        pdffile.drawString(303, y, prijs_excl_btw)
+        pdffile.drawString(220, y, str(aantal))
+        pdffile.drawString(303, y, str(prijs_excl_btw))
         pdffile.drawString(403, y, str(totaal_zonder_btw))
         y -= 25
+
+
+    totaal_btw = round(btw_6 + btw_9 + btw_21, 2) 
+
+
+    totaal = round(prijs_zonder_btw + totaal_btw, 2)
 
     y = y  
     x = 80
@@ -149,6 +154,7 @@ for filename in os.listdir(input_folder):
     pdffile.drawString(430, y, str(totaal) )
     pdffile.save()
 
+    
     if not os.path.exists(output_json_path):
         factuur_data = {
             "ordernummer": ordernummer,
@@ -173,7 +179,9 @@ for filename in os.listdir(input_folder):
         with open(output_json_path, 'w') as json_file:
             json.dump(factuur_data, json_file, indent=4)
 
+
     shutil.move(input_file_path, os.path.join(output_folder, filename))
+
 
     cursor.execute("INSERT INTO Factuur_Broski VALUES (?, ?, ?)", (naam, ordernummer, len(producten)))
     connection.commit()

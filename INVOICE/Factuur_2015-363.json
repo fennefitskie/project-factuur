@@ -1,0 +1,32 @@
+{
+    "ordernummer": "2015-363",
+    "orderdatum": "04-07-2022",
+    "betaaltermijn": "90-dagen",
+    "klant": {
+        "naam": "PC Jupiter B.V.",
+        "adres": "Kerkstraat 350",
+        "postcode": "8496 AC",
+        "stad": "Rotterdam",
+        "KVK-nummer": "16663598"
+    },
+    "bedrijf": {
+        "Naam": "F Fitskie & Y. Bron",
+        "Adres": "Rooseveltstraat 9",
+        "Postcode": "3772 BK Barneveld",
+        "Land": "Nederland"
+    },
+    "producten": [
+        {
+            "productnaam": "Microsoft Azure",
+            "aantal": 2,
+            "prijs_per_stuk_excl_btw": 44.83,
+            "btw_percentage": 21
+        },
+        {
+            "productnaam": "Adobe Photoshop",
+            "aantal": 4,
+            "prijs_per_stuk_excl_btw": 81.93,
+            "btw_percentage": 21
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "ordernummer": "2015-495",
+    "orderdatum": "19-03-2021",
+    "betaaltermijn": "60-dagen",
+    "klant": {
+        "naam": "PC Saturnus B.V.",
+        "adres": "Kerkstraat 40",
+        "postcode": "7105 AA",
+        "stad": "Rotterdam",
+        "KVK-nummer": "68884558"
+    },
+    "bedrijf": {
+        "Naam": "F Fitskie & Y. Bron",
+        "Adres": "Rooseveltstraat 9",
+        "Postcode": "3772 BK Barneveld",
+        "Land": "Nederland"
+    },
+    "producten": [
+        {
+            "productnaam": "Adobe Photoshop",
+            "aantal": 2,
+            "prijs_per_stuk_excl_btw": 139.27,
+            "btw_percentage": 9
+        },
+        {
+            "productnaam": "Google Analytics",
+            "aantal": 2,
+            "prijs_per_stuk_excl_btw": 210.28,
+            "btw_percentage": 6
+        }
+    ]
+}

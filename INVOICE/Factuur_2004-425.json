@@ -1,0 +1,26 @@
+{
+    "ordernummer": "2004-425",
+    "orderdatum": "18-01-2021",
+    "betaaltermijn": "30-dagen",
+    "klant": {
+        "naam": "PC Saturnus B.V.",
+        "adres": "Schoolstraat 680",
+        "postcode": "1287 AA",
+        "stad": "Utrecht",
+        "KVK-nummer": "30699929"
+    },
+    "bedrijf": {
+        "Naam": "F Fitskie & Y. Bron",
+        "Adres": "Rooseveltstraat 9",
+        "Postcode": "3772 BK Barneveld",
+        "Land": "Nederland"
+    },
+    "producten": [
+        {
+            "productnaam": "Google Ads",
+            "aantal": 4,
+            "prijs_per_stuk_excl_btw": 60.51,
+            "btw_percentage": 9
+        }
+    ]
+}

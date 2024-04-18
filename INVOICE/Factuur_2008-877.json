@@ -1,0 +1,26 @@
+{
+    "ordernummer": "2008-877",
+    "orderdatum": "02-07-2021",
+    "betaaltermijn": "90-dagen",
+    "klant": {
+        "naam": "PC Saturnus B.V.",
+        "adres": "Hoofdstraat 641",
+        "postcode": "7352 AA",
+        "stad": "Rotterdam",
+        "KVK-nummer": "66395157"
+    },
+    "bedrijf": {
+        "Naam": "F Fitskie & Y. Bron",
+        "Adres": "Rooseveltstraat 9",
+        "Postcode": "3772 BK Barneveld",
+        "Land": "Nederland"
+    },
+    "producten": [
+        {
+            "productnaam": "Adobe Creative Cloud",
+            "aantal": 2,
+            "prijs_per_stuk_excl_btw": 178.26,
+            "btw_percentage": 9
+        }
+    ]
+}

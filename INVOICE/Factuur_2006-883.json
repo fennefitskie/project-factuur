@@ -1,0 +1,26 @@
+{
+    "ordernummer": "2006-883",
+    "orderdatum": "07-09-2021",
+    "betaaltermijn": "30-dagen",
+    "klant": {
+        "naam": "PC Sputnik B.V.",
+        "adres": "Kerkstraat 693",
+        "postcode": "2870 AB",
+        "stad": "Amsterdam",
+        "KVK-nummer": "51685747"
+    },
+    "bedrijf": {
+        "Naam": "F Fitskie & Y. Bron",
+        "Adres": "Rooseveltstraat 9",
+        "Postcode": "3772 BK Barneveld",
+        "Land": "Nederland"
+    },
+    "producten": [
+        {
+            "productnaam": "Google Workspace",
+            "aantal": 4,
+            "prijs_per_stuk_excl_btw": 400.18,
+            "btw_percentage": 6
+        }
+    ]
+}
