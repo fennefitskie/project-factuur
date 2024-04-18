@@ -3,6 +3,10 @@ from reportlab.lib.units import inch
 import json
 import os
 import shutil
+import sqlite3
+
+connection = sqlite3.connect('database.db')
+cursor = connection.cursor()
 
 max_lengte = 15
 prijs_zonder_btw = 0
@@ -20,10 +24,11 @@ for filename in os.listdir(input_folder):
      input_file_path = os.path.join(input_folder, filename)
 
      with open(input_file_path, 'r') as f:
-        data = json.load(f)
+        data = json.load(f) 
 
      ordernummer = data.get('order', {}).get('ordernummer', 'niet gevonden')
      output_pdf_path = os.path.join(Pdf_folder, f'Factuur_{ordernummer}.pdf')
+     output_json_path = os.path.join(Pdf_folder, f'Factuur_{ordernummer}.json')
 
     
      order = data.get('order', {})
@@ -168,5 +173,44 @@ for filename in os.listdir(input_folder):
 
      pdffile.save()
 
+     factuur_data = {
+         'Ordernummer': ordernummer,
+         'Orderdatum' : orderdatum,
+         'Betaaltermijn': betaaltermijn,
+         'Klant': {
+             'Naam': naam,
+             'Adres': adres,
+             'Postcode': postcode,
+             'Stad': stad,
+             'KVK-nummer': kvk
+         },
+         'Bedrijf': {
+             'Naam': 'F. Fitskie & Y. Bron',
+             'Adres': 'Rooseveltstraat 9',
+             'Postcode': '3772 BK Barneveld',
+             'Land': 'Nederland',
+             'BTW-nummer': 'NL-843219765B45',
+             'KVK nummer': '874302619481'
+         },
+         'Producten': producten
+         }
+
+     
+     with open(output_json_path, 'w') as json_file:
+        json.dump(factuur_data, json_file, indent=4 )
+
      processed_file_path = os.path.join(output_folder, filename)
      shutil.move(input_file_path, processed_file_path)
+
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS Factuur_Broski(
+                 Klanten TEXT,
+               Factuur INTEGER,
+               Factuurregels INTEGER
+            ) """)
+
+cursor.execute("INSERT INTO Factuur_Broski VALUES (naam, ordernummer, productnaam)")
+
+connection.commit()
+connection.close()
+
