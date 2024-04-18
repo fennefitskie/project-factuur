@@ -8,7 +8,7 @@ btw_6 = 0
 btw_9 = 0
 btw_21 = 0
 
-with open('2006-379.json', 'r') as f:
+with open('2000-223.json', 'r') as f:
     data = json.load(f)
     
 order = data.get('order', {})
@@ -73,23 +73,23 @@ y = 700
 x = 80
 pdffile.line(x, y, x + 400, y)
 
-y = 505
+y = 500
 x = 80
 pdffile.line(x, y, x + 400, y)
 
 pdffile.setFont('Helvetica-Bold', 15)
-pdffile.drawString(100, 480, 'Item')
-pdffile.drawString(200, 480, 'Aantal')
-pdffile.drawString(300, 480, 'Prijs')
-pdffile.drawString(400, 480, 'Totaal')
+pdffile.drawString(100, 475, 'Item')
+pdffile.drawString(200, 475, 'Aantal')
+pdffile.drawString(300, 475, 'Prijs')
+pdffile.drawString(400, 475, 'Totaal')
 
-y = 460
+y = 455
 x = 80
 pdffile.line(x, y, x + 400, y)
 
 
 pdffile.setFont('Helvetica', 13 )
-y = 435
+y = 430
 
 
 for product in producten:
@@ -139,10 +139,9 @@ pdffile.line(x, y, x + 400, y)
 
 y = y - 20
 pdffile.drawString(320, y, 'Totaal excl BTW: ' )
-pdffile.drawString(430, y, str(prijs_zonder_btw))
+pdffile.drawString(430, y, str(round(prijs_zonder_btw, 2)))
 
 y = y - 20
-
 
 pdffile.drawString(385, y, 'BTW: ' )
 pdffile.drawString(430, y, str(totaal_btw))
