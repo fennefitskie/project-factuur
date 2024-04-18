@@ -1,0 +1,28 @@
+{
+    "Ordernummer": "2024-940",
+    "Orderdatum": "08-11-2022",
+    "Betaaltermijn": "30-dagen",
+    "Klant": {
+        "Naam": "PC Jupiter B.V.",
+        "Adres": "Hoofdstraat 336",
+        "Postcode": "8228 AC",
+        "Stad": "Rotterdam",
+        "KVK-nummer": "27883632"
+    },
+    "Bedrijf": {
+        "Naam": "F. Fitskie & Y. Bron",
+        "Adres": "Rooseveltstraat 9",
+        "Postcode": "3772 BK Barneveld",
+        "Land": "Nederland",
+        "BTW-nummer": "NL-843219765B45",
+        "KVK nummer": "874302619481"
+    },
+    "Producten": [
+        {
+            "productnaam": "Oracle MySQL",
+            "aantal": 3,
+            "prijs_per_stuk_excl_btw": 159.89,
+            "btw_percentage": 6
+        }
+    ]
+}
