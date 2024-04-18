@@ -3,6 +3,10 @@ from reportlab.lib.units import inch
 import json
 import os
 import shutil
+import sqlite3
+
+connection = sqlite3.connect('database.db')
+cursor = connection.cursor()
 
 max_lengte = 15
 prijs_zonder_btw = 0
@@ -197,3 +201,16 @@ for filename in os.listdir(input_folder):
 
      processed_file_path = os.path.join(output_folder, filename)
      shutil.move(input_file_path, processed_file_path)
+
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS Factuur_Broski(
+                 Klanten TEXT,
+               Factuur INTEGER,
+               Factuurregels INTEGER
+            ) """)
+
+cursor.execute("INSERT INTO Factuur_Broski VALUES (naam, ordernummer, productnaam)")
+
+connection.commit()
+connection.close()
+
